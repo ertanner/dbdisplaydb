@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h3>{{msg}} %</h3>
+    <h3>{{msg}}</h3>
     <div>
       <table width="300px" >
-          <td>Overall: {{iRef.IREF_Overall}}</td>
-          <td>Period: {{iRef.IREF_Period}}</td>
+          <td>Overall: {{iRef}}</td>
+          <td>Period: {{iRef}}</td>
       </table>
       <!--<column-chart :messages="{empty: 'No data'}" :refresh="60" :curve="false" width="600px" height="250px" :data="iRef"></column-chart>-->
       <!--<br>-->
     </div>
-    <!--<div> ChartData: {{ processJsonData(chartData) }} <br><br> cd: {{cd}}</div>-->
+    <div> Period: {{ iRefPeriod }} <br><br> Overall: {{iRefOverall}} <br><br> Data: {{iRef}}</div>
     <!--<div>-->
       <!--Start Date: <datepicker placeholder="Start Date" v-model="periodStart" name="start-date">Start Date: </datepicker> <br>-->
       <!--End Date: <datepicker placeholder="Start Date" v-model="periodEnd" name="start-date">End Date: </datepicker>-->
@@ -39,6 +39,8 @@ export default {
       periodStart: '',
       periodEnd: new Date(),
       iRef: [],
+      iRefOverall: [],
+      iRefPeriod: [],
       srcChartData: [],
       chartData: [],
       cd: [{'name': 'Overall', 'data': {'10-APR-2018': '36.02', '11-APR-2018': '35.32', '12-APR-2018': '33.74', '13-APR-2018': '32.67', '14-APR-2018': '34.20', '15-APR-2018': '35.70', '16-APR-2018': '34.69', '17-APR-2018': '33.95', '18-APR-2018': '33.34', '19-APR-2018': '32.89'}}, {'name': 'Period', 'data': {'10-APR-2018': '31.62', '11-APR-2018': '33.80', '12-APR-2018': '29.00', '13-APR-2018': '28.42', '14-APR-2018': '72.57', '15-APR-2018': '99.58', '16-APR-2018': '29.14', '17-APR-2018': '29.32', '18-APR-2018': '28.78', '19-APR-2018': '29.19'}}]
@@ -76,11 +78,20 @@ export default {
       this.processJsonData(this.chartData)
     },
     fetchData () { // 10.254.58.110:1337
-      axios.get(`http://localhost:1338/iref`)
+      axios.get(`http://localhost:1338/irefOverall`)
         .then(response => {
           // console.log(response.data)
           // this.chartData = response.data
-          this.chartData = response.data
+          this.iRefOverall = response.data
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+      axios.get(`http://localhost:1338/irefPeriod`)
+        .then(response => {
+          // console.log(response.data)
+          // this.chartData = response.data
+          this.iRefPeriod = response.data
         })
         .catch(e => {
           this.errors.push(e)
