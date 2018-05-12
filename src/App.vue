@@ -24,9 +24,12 @@
         <iref/>
       </div>
     </div>
-    <div class="columnt">
-      <longRun></longRun>
-    </div>
+      <div class="columnt">
+        <hadr></hadr>
+      </div>
+      <div class="columnt">
+        <longRun></longRun>
+      </div>
   </div>
 </template>
 
@@ -39,6 +42,7 @@ import dbLockCount from './components/DB_Lock_Count.vue'
 import msgQueueCount from './components/MsgQueueCount.vue'
 import iref from './components/IREF.vue'
 import longRun from './components/longRun.vue'
+import hadr from './components/hadr.vue'
 
 export default {
   name: 'App',
@@ -55,7 +59,8 @@ export default {
     'srvMemory': srvMemory,
     'bphr4k': bphr4k,
     'iref': iref,
-    'longRun': longRun
+    'longRun': longRun,
+    'hadr': hadr
   }
 }
 
