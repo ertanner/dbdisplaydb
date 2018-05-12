@@ -44,7 +44,7 @@ export default {
       this.fetchData()
     },
     fetchData () {
-      axios.get(`http://10.254.58.110:133/bpHitRt`)
+      axios.get(`http://10.254.58.110:1337/bpHitRt`)
         .then(response => {
           this.bp = response.data
         })
