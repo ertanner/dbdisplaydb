@@ -36,7 +36,7 @@ export default {
   created: function () {
     setInterval(() => {
       this.fetchData()
-    }, 60000)
+    }, 600000)
   },
   updated: function () {
     console.log() // 'BP Hit Ratio ' + this.counter

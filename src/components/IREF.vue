@@ -65,9 +65,7 @@ export default {
     }, this.options)
   },
   created: function () {
-    setInterval(() => {
-      this.fetchData()
-    }, 6000000)
+    this.fetchData()
   },
   updated: function () {
     console.log()

@@ -33,7 +33,7 @@ export default {
   created: function () {
     setInterval(() => {
       this.fetchData()
-    }, 60000)
+    }, 300000)
   },
   updated: function () {
     console.log() // 'MsgQueueCount ' + this.counter
