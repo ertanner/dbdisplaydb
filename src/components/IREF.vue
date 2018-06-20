@@ -3,66 +3,27 @@
     <h3>{{msg}}</h3>
     <div>
       <table width="300px" >
-          <td>Overall: {{iRef}}</td>
-          <td>Period: {{iRef}}</td>
+        <tr v-for="b in iRefOverall" v-bind:class="b.IREF_Overall" v-bind:key="b.IREF_Overall">
+          <td>{{b.iref}}</td>
+        </tr>
       </table>
-      <!--<column-chart :messages="{empty: 'No data'}" :refresh="60" :curve="false" width="600px" height="250px" :data="iRef"></column-chart>-->
-      <!--<br>-->
     </div>
-    <div> Period: {{ iRefPeriod }} <br><br> Overall: {{iRefOverall}} <br><br> Data: {{iRef}}</div>
-    <!--<div>-->
-      <!--Start Date: <datepicker placeholder="Start Date" v-model="periodStart" name="start-date">Start Date: </datepicker> <br>-->
-      <!--End Date: <datepicker placeholder="Start Date" v-model="periodEnd" name="start-date">End Date: </datepicker>-->
-      <!--<br>-->
-    <!--</div>-->
-    <div>
-      <line-chart :messages="{empty: 'No data'}" :refresh="60" :curve="false" width="600px" height="250px" :data="cd"></line-chart>
-    </div>
-
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Datepicker from 'vuejs-datepicker'
 
 export default {
   name: 'IREF',
-  components: {
-    Datepicker
-  },
   data () {
     return {
       msg: 'Index Read Efficiency',
-      bp: [],
-      counter: 0,
-      periodStart: '',
-      periodEnd: new Date(),
-      iRef: [],
-      iRefOverall: [],
-      iRefPeriod: [],
-      srcChartData: [],
-      chartData: [],
-      cd: [{'name': 'Overall', 'data': {'10-APR-2018': '36.02', '11-APR-2018': '35.32', '12-APR-2018': '33.74', '13-APR-2018': '32.67', '14-APR-2018': '34.20', '15-APR-2018': '35.70', '16-APR-2018': '34.69', '17-APR-2018': '33.95', '18-APR-2018': '33.34', '19-APR-2018': '32.89'}}, {'name': 'Period', 'data': {'10-APR-2018': '31.62', '11-APR-2018': '33.80', '12-APR-2018': '29.00', '13-APR-2018': '28.42', '14-APR-2018': '72.57', '15-APR-2018': '99.58', '16-APR-2018': '29.14', '17-APR-2018': '29.32', '18-APR-2018': '28.78', '19-APR-2018': '29.19'}}]
-      //  [{'name': 'Overall', 'data': {'19-APR-2018': '32.89', '18-APR-2018': '33.34', '17-APR-2018': '33.95', '16-APR-2018': '34.69', '15-APR-2018': '35.70', '14-APR-2018': '34.20', '13-APR-2018': '32.67', '12-APR-2018': '33.74', '11-APR-2018': '35.32', '10-APR-2018': '36.02'}}, {'name': 'Period', 'data': {'19-APR-2018': '29.19', '18-APR-2018': '28.78', '17-APR-2018': '29.32', '16-APR-2018': '29.14', '15-APR-2018': '99.58', '14-APR-2018': '72.57', '13-APR-2018': '28.42', '12-APR-2018': '29.00', '11-APR-2018': '33.80', '10-APR-2018': '31.62'}}]
+      iref: []
     }
   },
   mounted: function () {
     this.fetchData()
-    this.renderChart({
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      datasets: [
-        {
-          label: 'downloads',
-          borderColor: '#249EBF',
-          pointBackgroundColor: 'white',
-          borderWidth: 1,
-          pointBorderColor: '#249EBF',
-          backgroundColor: 'transparent',
-          data: this.chartData
-        }
-      ]
-    }, this.options)
   },
   created: function () {
     this.fetchData()
@@ -73,55 +34,26 @@ export default {
   methods: {
     onFinish () {
       this.fetchData()
-      this.processJsonData(this.chartData)
     },
     fetchData () { // 10.254.58.110:1337
-      axios.get(`http://localhost:1338/irefOverall`)
+      axios.get(`http://localhost:1339/irefData`)
         .then(response => {
           // console.log(response.data)
           // this.chartData = response.data
-          this.iRefOverall = response.data
+          this.iref = response.data
         })
         .catch(e => {
           this.errors.push(e)
         })
-      axios.get(`http://localhost:1338/irefPeriod`)
-        .then(response => {
-          // console.log(response.data)
-          // this.chartData = response.data
-          this.iRefPeriod = response.data
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
-      axios.get(`http://localhost:1338/irefData`)
-        .then(response => {
-          // console.log(response.data)
-          this.iRef = response.data
-          // this.chartData = this.processSrcData(this.srcChartData)
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
-    },
-    processJsonData (srcChartData) {
-      var x = JSON.stringify(srcChartData)
-      x = x.replace(new RegExp('"', 'g'), '\'')
-      x = x.replace(new RegExp('\'StatTime\':', 'g'), '')
-      x = x.replace(new RegExp(',\'Iref\':', 'g'), ': ')
-      x = x.replace(new RegExp('}]},{', 'g'), ' } }, {')
-      x = x.replace(new RegExp('},{', 'g'), ', ')
-      x = x.replace(new RegExp('\'data\':\\[{', 'g'), ' \'data\': {')
-      x = x.replace(new RegExp('}]}]', 'g'), ' } } ]')
-      x = x.replace(new RegExp('{\'name\':', 'g'), '{ \'name\': ')
-      x = x.replace(new RegExp('\\[', 'g'), '[ ')
-      // x = x.replace(new RegExp(']', 'g'), '')
-      // x = x.replace(new RegExp('\\[', 'g'), '')
-      x = x.replace(new RegExp('"data":\\[ {"', 'g'), '"data": {"')
-      // x = x.replace(new RegExp('\'', 'g'), '"')
-      console.log(x)
-      console.log(this.cd)
-      return x
+      // axios.get(`http://localhost:1338/irefPeriod`)
+      //   .then(response => {
+      //     // console.log(response.data)
+      //     // this.chartData = response.data
+      //     this.iRefPeriod = response.data
+      //   })
+      //   .catch(e => {
+      //     this.errors.push(e)
+      //   })
     }
   }
 }

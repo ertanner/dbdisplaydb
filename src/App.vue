@@ -43,6 +43,7 @@ import msgQueueCount from './components/MsgQueueCount.vue'
 import iref from './components/IREF.vue'
 import longRun from './components/longRun.vue'
 import hadr from './components/hadr.vue'
+import irefChart from './components/IrefChart.vue'
 
 export default {
   name: 'App',
@@ -60,7 +61,8 @@ export default {
     'bphr4k': bphr4k,
     'iref': iref,
     'longRun': longRun,
-    'hadr': hadr
+    'hadr': hadr,
+    'irefChart': irefChart
   }
 }
 
