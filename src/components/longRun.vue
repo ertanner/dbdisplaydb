@@ -43,7 +43,7 @@ export default {
       this.fetchData()
     },
     fetchData () {
-      axios.get(`http://localhost:1338/longRun`)
+      axios.get(`http://localhost:1337/longRun`)
         .then(response => {
           this.lr = response.data
         })
