@@ -36,7 +36,7 @@ export default {
       this.fetchData()
     },
     fetchData () { // 10.254.58.110:1337
-      axios.get(`http://localhost:1339/irefData`)
+      axios.get(`http://10.254.58.110:1337/irefData`)
         .then(response => {
           // console.log(response.data)
           // this.chartData = response.data
