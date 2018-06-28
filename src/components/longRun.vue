@@ -2,14 +2,21 @@
   <div class="longRun">
     <h3>{{msg}}</h3>
     <table>
+      <tr>
+        <td>Statement Text </td>
+        <td>Agent ID</td>
+        <td>App Name</td>
+        <td>User</td>
+        <td>App Status</td>
+        <td>Time</td>
+      </tr>
       <tr v-for="l in lr" v-bind:class="l.COLOR" v-bind:key="l.ROW_NEXT">
         <td>{{l.STMT_TEXT}}</td>
         <td>{{l.AGENT_ID}}</td>
         <td>{{l.APPLICATION_NAME}}</td>
         <td>{{l.User_Name}}</td>
-        <td>{{l.ELAPSED_TIME_MIN}}</td>
         <td>{{l.APPL_STATUS}}</td>
-        <td>{{l.STAT_TIME}}</td>
+        <td>{{l.ELAPSED_TIME_MIN}}</td>
       </tr>
     </table>
   </div>
