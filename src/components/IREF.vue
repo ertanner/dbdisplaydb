@@ -3,8 +3,13 @@
     <h3>{{msg}}</h3>
     <div>
       <table width="300px" >
-        <tr v-for="b in iRefOverall" v-bind:class="b.IREF_Overall" v-bind:key="b.IREF_Overall">
-          <td>{{b.iref}}</td>
+        <tr>
+          <td>IREF</td>
+          <td>IREF_Period</td>
+        </tr>
+        <tr v-for="b in iref" v-bind:class="b.IREF_Overall" v-bind:key="b.IREF_Overall">
+          <td>{{b.IREF}}</td>
+          <td>{{b.IREF_PERIOD}}</td>
         </tr>
       </table>
     </div>
@@ -36,7 +41,7 @@ export default {
       this.fetchData()
     },
     fetchData () { // 10.254.58.110:1337
-      axios.get(`http://10.254.58.110:1337/irefData`)
+      axios.get(`http://localhost:1338/irefData`)
         .then(response => {
           // console.log(response.data)
           // this.chartData = response.data
