@@ -48,7 +48,7 @@ export default {
     },
     fetchDataTPB () {
       // axios.get(`http://10.254.58.110:1337/tpbRestore`)
-      axios.get(`http://localhost:1338/tpbRestore`)
+      axios.get(`http://10.254.58.110:1337/tpbRestore`)
         .then(response => {
           console.log(response.data)
           this.tpb = response.data
@@ -59,7 +59,7 @@ export default {
     },
     fetchDataTST () {
       // axios.get(`http://10.254.58.110:1337/tpbRestore`)
-      axios.get(`http://localhost:1338/tstRestore`)
+      axios.get(`http://10.254.58.110:1337/tstRestore`)
         .then(response => {
           console.log(response.data)
           this.tst = response.data
@@ -70,7 +70,7 @@ export default {
     },
     fetchDataDEV () {
       // axios.get(`http://10.254.58.110:1337/tpbRestore`)
-      axios.get(`http://localhost:1338/devRestore`)
+      axios.get(`http://10.254.58.110:1337/devRestore`)
         .then(response => {
           console.log(response.data)
           this.dev = response.data
