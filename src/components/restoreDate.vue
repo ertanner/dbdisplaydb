@@ -23,10 +23,10 @@
 import axios from 'axios'
 
 export default {
-  name: 'RestoreDate',
+  name: 'Date of Last Refresh',
   data () {
     return {
-      msg: 'Restore Date',
+      msg: 'Date of Last Refresh',
       tpb: [],
       tst: [],
       dev: []
