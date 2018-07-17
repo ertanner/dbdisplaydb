@@ -65,5 +65,13 @@ export default {
 </script>
 
 <style scoped>
-
+  table{
+    padding: 10px;
+  }
+  tr{
+    border: 1px;
+  }
+  td{
+    border: 1px;
+  }
 </style>

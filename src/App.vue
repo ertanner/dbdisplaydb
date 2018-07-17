@@ -3,9 +3,6 @@
     <h1 align="center">DB Health Dashboard</h1>
     <div class="column">
       <div>
-        <dbMemory/>
-      </div>
-      <div>
         <srvMemory/>
       </div>
       <div>
@@ -30,6 +27,9 @@
       <div class="columnt">
         <longRun></longRun>
       </div>
+      <div class="botRight">
+        <restoreDate class="bottomRight"/>
+      </div>
   </div>
 </template>
 
@@ -44,6 +44,7 @@ import iref from './components/IREF.vue'
 import longRun from './components/longRun.vue'
 import hadr from './components/hadr.vue'
 import irefChart from './components/IrefChart.vue'
+import restoreDate from './components/restoreDate.vue'
 
 export default {
   name: 'App',
@@ -62,7 +63,8 @@ export default {
     'iref': iref,
     'longRun': longRun,
     'hadr': hadr,
-    'irefChart': irefChart
+    'irefChart': irefChart,
+    'restoreDate': restoreDate
   }
 }
 
@@ -107,4 +109,10 @@ export default {
   display: table;
   clear: both;
 }
+.botRight{
+  position: relative;
+}
+  .bottomRight{
+    position: absolute; bottom: -800px; right: 0;
+  }
 </style>
