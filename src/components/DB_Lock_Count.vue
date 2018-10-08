@@ -36,7 +36,7 @@ export default {
       this.fetchData()
     },
     fetchData () {
-      axios.get(`http://10.254.58.110:1337/dbaLocks24hr`)
+      axios.get(this.$store.getters.getIP + '/dbaLocks24hr')
         .then(response => {
           this.dbLock = response.data
         })
@@ -51,13 +51,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   table{
-    padding: 10px;
+    padding: 0px;
+    border: 1px solid black;
+    border-collapse: collapse;
   }
   tr{
     border: 1px;
   }
   td{
     border: 1px;
+    border: 1px solid black;
   }
   h3{
     text-decoration-line: underline;
@@ -70,9 +73,5 @@ export default {
   .yellow {
     background-color: yellow;
     color: blue;
-  }
-  .green {
-    background-color: darkgreen;
-    color: yellow;
   }
 </style>

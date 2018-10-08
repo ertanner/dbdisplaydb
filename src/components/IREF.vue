@@ -3,13 +3,13 @@
     <h3>{{msg}}</h3>
     <div>
       <table width="300px" >
-        <tr>
-          <td>IREF</td>
-          <td>IREF_Period</td>
+        <tr align="center">
+          <td>Type</td>
+          <td>Value</td>
         </tr>
-        <tr v-for="b in iref" v-bind:class="b.IREF_Overall" v-bind:key="b.IREF_Overall">
+        <tr v-for="b in iref" v-bind:class="b.V_COLOR" v-bind:key="b.NAME">
+          <td>{{b.NAME}}</td>
           <td>{{b.IREF}}</td>
-          <td>{{b.IREF_PERIOD}}</td>
         </tr>
       </table>
     </div>
@@ -41,7 +41,7 @@ export default {
       this.fetchData()
     },
     fetchData () { // 10.254.58.110:1337
-      axios.get(`http://10.254.58.110:1337/irefData`)
+      axios.get(this.$store.getters.getIP + '/irefData')
         .then(response => {
           // console.log(response.data)
           // this.chartData = response.data
@@ -66,12 +66,27 @@ export default {
 
 <style scoped>
   table{
-    padding: 10px;
+    padding: 0px;
+    border: 1px solid black;
+    border-collapse: collapse;
   }
   tr{
     border: 1px;
   }
   td{
-    border: 1px;
+    border: 1px solid black;
   }
+  h3{
+    text-decoration-line: underline;
+    text-underline: black;
+  }
+  .red {
+    background-color: salmon;
+    color: blue;
+  }
+  .yellow {
+    background-color: yellow;
+    color: blue;
+  }
+
 </style>

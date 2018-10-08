@@ -1,16 +1,16 @@
 <template>
 <div class="bphr4k">
   <h3>{{msg}} %</h3>
-  <table width="300px" >
-    <tr>
+  <table class="table table-striped" width="300px" >
+    <tr align="center">
       <td>Name</td>
       <td>Size</td>
       <td>Ratio</td>
     </tr>
-    <tr v-for="b in bp" v-bind:class="b.V_COLOR" v-bind:key="b.MINHR">
+    <tr v-for="b in bp" v-bind:class="b.V_COLOR"  v-bind:key="b.MINHR">
       <td>{{b.BP_NAME}}</td>
       <td>{{b.BP_CUR_BUFFSZ}}</td>
-      <td>{{b.TOTAL_HIT_RATIO_PERCENT}}</td>
+      <td >{{b.TOTAL_HIT_RATIO_PERCENT}}</td>
     </tr>
   </table>
 </div>
@@ -42,7 +42,7 @@ export default {
       this.fetchData()
     },
     fetchData () {
-      axios.get(`http://10.254.58.110:1337/bpHitRt`)
+      axios.get(this.$store.getters.getIP + '/bpHitRt')
         .then(response => {
           this.bp = response.data
         })
@@ -57,12 +57,15 @@ export default {
 <style scoped>
   table{
     padding: 10px;
+    border: solid 1px;
+    border-collapse: collapse;
   }
   tr{
     border: 1px;
   }
   td{
     border: 1px;
+    border: 1px solid black;
   }
   h3{
     text-decoration-line: underline;
@@ -76,8 +79,5 @@ export default {
     background-color: yellow;
     color: blue;
   }
-  .green {
-    background-color: darkgreen;
-    color: yellow;
-  }
+
 </style>

@@ -3,7 +3,7 @@
   <h3>{{msg}} %</h3>
   <table width="300px" >
     <tr v-for="b in bp" v-bind:class="b.V_COLOR" v-bind:key="b.MINHR">
-      <td>{{b.MINHR}}</td>
+      <td align="center">{{b.MINHR}}</td>
     </tr>
   </table>
 </div>
@@ -35,7 +35,7 @@ export default {
       this.fetchData()
     },
     fetchData () {
-      axios.get(`http://10.254.58.110:1337/bphitratio`)
+      axios.get(this.$store.getters.getIP + '/bphitratio')
         .then(response => {
           this.bp = response.data
         })
@@ -50,6 +50,8 @@ export default {
 <style scoped>
   table{
     padding: 10px;
+    border: solid 1px;
+    border-collapse: collapse;
   }
   tr{
     border: 1px;
@@ -69,8 +71,5 @@ export default {
     background-color: yellow;
     color: blue;
   }
-  .green {
-    background-color: darkgreen;
-    color: yellow;
-  }
+
 </style>

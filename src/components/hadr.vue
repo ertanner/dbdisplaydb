@@ -8,11 +8,11 @@
         <td>Log Page</td>
         <td>Log LSN</td>
       </tr>
-      <tr v-for="l in lr" v-bind:class="l.COLOR" v-bind:key="l.Orderby">
+      <tr v-for="l in lr" v-bind:key="l.Orderby">
         <td>{{l.SERVER}}</td>
         <td>{{l.LOG_FILE}}</td>
         <td>{{l.LOG_PAGE}}</td>
-        <td>{{l.LOG_LSN}}</td>
+        <td  v-bind:class="l.COLOR">{{l.LOG_LSN}}</td>
       </tr>
     </table>
   </div>
@@ -46,7 +46,7 @@ export default {
       this.fetchData()
     },
     fetchData () {
-      axios.get(`http://10.254.58.110:1337/hadr`)
+      axios.get(this.$store.getters.getIP + '/hadr')
         .then(response => {
           this.lr = response.data
         })
@@ -82,10 +82,6 @@ export default {
   .yellow {
     background-color: blue;
     color: white;
-  }
-  .green {
-    background-color: yellow;
-    color: blue;
   }
   .orange {
     background-color: orange;

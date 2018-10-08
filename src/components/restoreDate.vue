@@ -1,19 +1,15 @@
 <template>
-  <div class="restoreDate">
-    <h3>{{msg}}</h3>
-    <table width="300px" >
+  <div id="container">
+    <h3 align="center">{{msg}}</h3>
+    <table class="table table-bordered">
       <tr v-for="b in tpb"  v-bind:class="b.V_COLOR" v-bind:key="b.DATE">
-        <td>TPB</td><td>{{b.DATE}}</td>
+          <td>TPB </td><td>{{b.DATE}}</td>
       </tr>
-    </table>
-    <table width="300px" >
-      <tr v-for="c in tst"  v-bind:class="c.V_COLOR" v-bind:key="c.DATE">
-        <td>TST</td><td>{{c.DATE}}</td>
+      <tr  v-for="c in tst"  v-bind:class="c.V_COLOR" v-bind:key="c.DATE">
+          <td>TST </td><td>{{c.DATE}}</td>
       </tr>
-    </table>
-    <table width="300px" >
       <tr v-for="d in dev"  v-bind:class="d.V_COLOR" v-bind:key="d.DATE">
-        <td>DEV</td><td>{{d.DATE}}</td>
+        <td>DEV</td>  <td>{{d.DATE}}</td>
       </tr>
     </table>
   </div>
@@ -47,8 +43,8 @@ export default {
       this.fetchDataDEV()
     },
     fetchDataTPB () {
-      // axios.get(`http://10.254.58.110:1337/tpbRestore`)
-      axios.get(`http://10.254.58.110:1337/tpbRestore`)
+      axios.get(this.$store.getters.getIP + '/tpbRestore')
+      // axios.get(`http://localhost:1338/tpbRestore`)
         .then(response => {
           console.log(response.data)
           this.tpb = response.data
@@ -58,8 +54,8 @@ export default {
         })
     },
     fetchDataTST () {
-      // axios.get(`http://10.254.58.110:1337/tpbRestore`)
-      axios.get(`http://10.254.58.110:1337/tstRestore`)
+      axios.get(this.$store.getters.getIP + '/tstRestore')
+      // axios.get(`http://localhost:1338/tstRestore`)
         .then(response => {
           console.log(response.data)
           this.tst = response.data
@@ -69,8 +65,8 @@ export default {
         })
     },
     fetchDataDEV () {
-      // axios.get(`http://10.254.58.110:1337/tpbRestore`)
-      axios.get(`http://10.254.58.110:1337/devRestore`)
+      axios.get(this.$store.getters.getIP + '/devRestore')
+      // axios.get(`http://localhost:1338/devRestore`)
         .then(response => {
           console.log(response.data)
           this.dev = response.data
@@ -85,28 +81,29 @@ export default {
 
 <style scoped>
   table{
-    padding: 10px;
+    padding: 0px;
+    border: solid 1px;
+    border-collapse: collapse;
   }
   tr{
-    border: 1px;
+    /*border: solid 1px;*/
   }
   td{
-    border: 1px;
+    border: solid 1px;
+  }
+  #row{
+    display: table-row;
+  }
+  .t{
+    display: table-cell;
+    border-style: solid;
+    border: black;
+    border-width: thin;
+    border-color: black;
   }
   h3{
     text-decoration-line: underline;
     text-underline: black;
   }
-  .red {
-    background-color: salmon;
-    color: blue;
-  }
-  .yellow {
-    background-color: yellow;
-    color: blue;
-  }
-  .green {
-    background-color: darkgreen;
-    color: yellow;
-  }
+
 </style>

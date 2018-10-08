@@ -36,7 +36,7 @@ export default {
       console.log('onFinish!')
     },
     fetchData () {
-      axios.get(`http://10.254.58.110:1337/dbmem`)
+      axios.get(this.$store.getters.getIP + '/dbmem')
         .then(response => {
           this.dbM = response.data
         })
@@ -72,8 +72,8 @@ h3{
     background-color: yellow;
     color: blue;
   }
-  .green {
-    background-color: darkgreen;
-    color: yellow;
-  }
+  /*.green {*/
+    /*background-color: darkgreen;*/
+    /*color: yellow;*/
+  /*}*/
 </style>

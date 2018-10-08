@@ -50,7 +50,7 @@ export default {
       this.fetchData()
     },
     fetchData () {
-      axios.get(`http://10.254.58.110:1337/longRun`)
+      axios.get(this.$store.getters.getIP + '/longRun')
         .then(response => {
           this.lr = response.data
         })
@@ -63,6 +63,9 @@ export default {
 </script>
 
 <style scoped>
+  .longRun{
+    vertical-align: 60px;
+  }
   table{
     padding: 0px;
     border: 1px solid black;
@@ -86,10 +89,6 @@ export default {
   .yellow {
     background-color: blue;
     color: white;
-  }
-  .green {
-    background-color: yellow;
-    color: blue;
   }
   .orange {
     background-color: orange;

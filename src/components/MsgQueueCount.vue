@@ -46,7 +46,7 @@ export default {
       this.fetchData()
     },
     fetchData () {
-      axios.get(`http://10.254.58.110:1337/MessageQueueStatus`)
+      axios.get(this.$store.getters.getIP + '/MessageQueueStatus')
         .then(response => {
           this.mQCnt = response.data
           // if (this.mQCnt === []) {
@@ -65,16 +65,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   table{
-    background: green;
-    padding: 10px;
-    color: white;
+    padding: 0px;
+    border: 1px solid black;
+    border-collapse: collapse;
   }
   tr{
     border: 1px;
-    border-color: black;
   }
   td{
     border: 1px;
+    border: 1px solid black;
   }
   h3{
     text-decoration-line: underline;
@@ -87,9 +87,5 @@ export default {
   .yellow {
     background-color: yellow;
     color: blue;
-  }
-  .green {
-    background-color: darkgreen;
-    color: yellow;
   }
 </style>

@@ -1,7 +1,8 @@
 <template>
   <div id="app" align="center" class="row">
     <h1 align="center">DB Health Dashboard</h1>
-    <div class="column">
+    <hr>
+    <div class="lh_column">
       <div>
         <srvMemory/>
       </div>
@@ -21,15 +22,19 @@
         <iref/>
       </div>
     </div>
-      <div class="columnt">
+    <div class="rh_column">
+      <div class="floatLt">
         <hadr></hadr>
       </div>
-      <div class="columnt">
+      <div class="floatRt">
+        <restoreDate/>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="bottomDiv">
         <longRun></longRun>
       </div>
-      <div class="botRight">
-        <restoreDate class="bottomRight"/>
-      </div>
+    </div>
   </div>
 </template>
 
@@ -75,44 +80,44 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
   width: 100%;
 }
-.left{
-  float: left;
-    width: 300px;
-  }
-.right{
-  float: right;
-    width: 300px;
-  }
-.middle{
-  width: 300px;
+body{
+  background-color: aliceblue;
 }
-  h1{
-    align: center;
-    text-decoration-line: underline;
-    text-underline: black;
-  }
-.column {
+.lh_column {
   float: left;
   width: 20%;
+  padding-left: 20px;
+  border-right: 2px black solid;
 }
-.columnt {
+.rh_column {
   float: right;
-  width: 80%;
+  width: 75%;
+  border-bottom: 2px black solid;
+  padding-bottom: 10px;
 }
 
+.floatLt{
+  float: left;
+  padding-left: 100px;
+}
+.floatRt{
+  float: right;
+  padding-right: 100px;
+}
+
+.bottom{
+  padding-top: 200px;
+}
+.bottomDiv{
+  padding-top: 20px;
+}
 /* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
-.botRight{
-  position: relative;
-}
-  .bottomRight{
-    position: absolute; bottom: -800px; right: 0;
-  }
 </style>
